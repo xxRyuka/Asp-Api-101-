@@ -6,4 +6,6 @@ public class CreateProductDto
     public decimal Price { get; set; }
     public int Stock { get; set; }
 
+    public ICollection<int> CategoryIds { get; set; } = new List<int>();
+
 }

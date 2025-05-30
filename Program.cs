@@ -1,3 +1,4 @@
+using firstApi.Mappers;
 using firstApi.Models;
 using Microsoft.EntityFrameworkCore;
 using SwaggerThemes;
@@ -10,12 +11,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+
+
+builder.Services.AddScoped<IProductMapper, ProductMapper>();
 // sql yok pcde
-// builder.Services.AddDbContext<ApiDbContext>(opt =>
-// {
-//     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//     opt.UseSqlServer(connectionString);
-// });
+builder.Services.AddDbContext<ApiDbContext>(opt =>
+{
+    string key =
+        "Data Source=localhost;Database = apiDb;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Encrypt=True;Trust Server Certificate=True;Application Name=\"SQL Server Management Studio\";Command Timeout=0";
+    var connectionString = key;
+    opt.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 app.MapControllers();

@@ -12,7 +12,7 @@ public class ProductController : ControllerBase
     [HttpGet]
     public IActionResult GelAllProducts()
     {
-        var items2 = Models.Repository._products.Select(p => new ListViewDto
+        var items2 = Models.Repository._products.Select(p => new ProductDto
         {
             Id = p.Id,
             Price = p.Price,
